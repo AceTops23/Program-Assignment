@@ -1,32 +1,35 @@
-
 body {
   font-family: Arial, sans-serif;
-  margin: 50px;
+  margin: 20px;
   background-color: #f8f9fa;
 }
 
 .title {
-  position: absolute;
-  margin-bottom: 10px;
-  margin-left: 45rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  padding: 0;
 }
 
 .title p {
-  font-size: 35px;
+  font-size: 28px;
+  margin: 0;
 }
+
 .survey-container {
   max-width: 110rem;
   margin: auto;
-  padding-top: 100px;
+  padding-top: 10px;
+  margin-bottom: 20px;
 }
+
 .question {
   background-color: white;
-  padding: 20px;
+  padding: 20px 20px 10px 20px; 
   position: relative;
   box-shadow: 0 2.5px 3px rgba(0, 0, 0, 0.3);
   margin-bottom: 30px;
   height: 5.5rem;
-  
 }
 
 .question::before {
@@ -36,9 +39,7 @@ body {
   left: 0;
   width: 100%;
   height: 5px; 
-  background-color: #00008B; 
-  border-top-left-radius: 10px; 
-  border-top-right-radius: 10px; 
+  background-color: #12435F; 
 }
 
 
@@ -47,37 +48,50 @@ body {
   display: block;
   margin-bottom: 10px;
 }
+
 .options {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 50px;
 }
+
 .option {
+  display: inline-block;
   border: 2px solid #ccc;
   padding: 10px;
   cursor: pointer;
   text-align: center;
-  width: 18%;
-  border-radius: 8px; /* Rounded corners */
+  margin: 10px 0;
+  border-radius: 8px;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-  margin-top: 1.5rem;
 }
+
+.option:hover {
+  background-color: #e0f0ff; /* Slight blue tint */
+  border-color: #12435F;
+}
+
+
 .option.selected {
-  background-color: #007BFF;
+  background-color: #004a6e; /* Darker teal blue */
   color: white;
-  border-color: #0056b3;
+  border-color: #00354c; /* Slightly darker border */
 }
+
 .submit-btn {
   background-color: gray;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px; /* Rounded submit button */
+  border-radius: 7px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 5px;
   transition: background-color 0.3s;
   
 }
+
 .submit-btn:hover {
   background-color: #0056b3;
 }
