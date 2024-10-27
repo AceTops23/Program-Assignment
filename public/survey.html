@@ -7,12 +7,16 @@
     <title>Survey Form</title>
 </head>
 <body>
+    <!-- Page Title -->
     <div class="title">
         <p>Programming Test 1</p>
     </div>
+
+    <!-- Survey Form Container -->
     <div class="survey-container">
         <form id="surveyForm">
-            <div class="question" id="q1">
+            <!-- Question 1 -->
+            <div class="question" id="Q1">
                 <label>1. I worry about things.</label>
                 <div class="options">
                     <div class="option" data-value="1">Very Inaccurate</div>
@@ -23,7 +27,8 @@
                 </div>
             </div>
 
-            <div class="question" id="q2">
+            <!-- Question 2 -->
+            <div class="question" id="Q2">
                 <label>2. I make friends easily.</label>
                 <div class="options">
                     <div class="option" data-value="1">Very Inaccurate</div>
@@ -34,7 +39,8 @@
                 </div>
             </div>
 
-            <div class="question" id="q3">
+            <!-- Question 3 -->
+            <div class="question" id="Q3">
                 <label>3. I have a vivid imagination.</label>
                 <div class="options">
                     <div class="option" data-value="1">Very Inaccurate</div>
@@ -45,46 +51,68 @@
                 </div>
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
 
     <script>
+        // Form and options elements
         const form = document.getElementById('surveyForm');
         const options = document.querySelectorAll('.option');
 
+        // Add click event to each option for selection handling
         options.forEach(option => {
             option.addEventListener('click', () => {
+                // Clear selection for other options in the same question
                 const siblings = option.parentNode.querySelectorAll('.option');
                 siblings.forEach(sib => sib.classList.remove('selected'));
+
+                // Mark selected option
                 option.classList.add('selected');
             });
         });
 
+        // Form submission event listener
         form.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
 
+            let valid = true; // Flag to track form validation
+
+            // Collect answers from selected options
             const answers = {
-                q1: document.querySelector('#q1 .selected')?.getAttribute('data-value'),
-                q2: document.querySelector('#q2 .selected')?.getAttribute('data-value'),
-                q3: document.querySelector('#q3 .selected')?.getAttribute('data-value')
+                Q1: document.querySelector('#Q1 .selected')?.getAttribute('data-value'),
+                Q2: document.querySelector('#Q2 .selected')?.getAttribute('data-value'),
+                Q3: document.querySelector('#Q3 .selected')?.getAttribute('data-value')
             };
 
-            fetch('/submit-survey', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(answers)
-            }).then(response => {
-                if (response.ok) {
-                    alert('Survey submitted successfully!');
-                } else {
-                    alert('Failed to submit the survey.');
+            // Check if all questions are answered
+            Object.keys(answers).forEach(key => {
+                if (!answers[key]) {
+                    valid = false; // Set validation flag to false if unanswered
                 }
             });
+
+            if (valid) {
+                // Submit answers if valid
+                fetch('/submit-survey', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(answers)
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Survey submitted successfully!');
+                    } else {
+                        alert('Failed to submit the survey.');
+                    }
+                });
+            } else {
+                // Alert if form is incomplete
+                alert('Please answer all questions before submitting.');
+            }
         });
     </script>
-
 </body>
 </html>
