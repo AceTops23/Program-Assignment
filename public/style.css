@@ -68,15 +68,15 @@ body {
 }
 
 .option:hover {
-  background-color: #e0f0ff; /* Slight blue tint */
+  background-color: #e0f0ff;
   border-color: #12435F;
 }
 
 
 .option.selected {
-  background-color: #004a6e; /* Darker teal blue */
+  background-color: #004a6e;
   color: white;
-  border-color: #00354c; /* Slightly darker border */
+  border-color: #00354c;
 }
 
 .submit-btn {
